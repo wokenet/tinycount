@@ -8,7 +8,7 @@ Two options are accepted via environment variable:
 
 `PORT`: Specify the port the http server will listen on.  
 `INTERVAL_SECS`: The interval (in seconds) between client polls.  
-`ALLOWED_ORIGIN`: Set to specify an Access-Control-Allow-Origin header value.
+`ALLOWED_ORIGINS`: Origin header values that views will be accepted from.
 
 ## API
 

@@ -3,7 +3,9 @@ const http = require('http')
 function main() {
   const port = process.env.PORT ?? 8123
   const intervalSecs = process.env.INTERVAL_SECS ?? 60
-  const allowedOrigin = process.env.ALLOWED_ORIGIN
+  const allowedOrigins =
+    process.env.ALLOWED_ORIGINS &&
+    new Set(process.env.ALLOWED_ORIGINS.split(','))
   const intervalMs = intervalSecs * 1000
 
   const clients = new Map()
@@ -29,13 +31,21 @@ function main() {
       return
     }
 
+    const origin = req.headers['origin']
+    if (allowedOrigins && !allowedOrigins.has(origin)) {
+      res.writeHead(403)
+      res.write('invalid origin')
+      res.end()
+      return
+    }
+
     clients.set(id, Date.now())
 
     const headers = {
       'Cache-Control': `max-age=${intervalSecs}`,
     }
-    if (allowedOrigin) {
-      headers['Access-Control-Allow-Origin'] = allowedOrigin
+    if (allowedOrigins) {
+      headers['Access-Control-Allow-Origin'] = origin
     }
     res.writeHead(200, headers)
     res.write(String(clients.size))
