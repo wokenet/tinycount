@@ -1,0 +1,26 @@
+{
+  "name": "tinycount",
+  "version": "1.0.0",
+  "description": "A trivial active viewers count server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wokenet/tinycount.git"
+  },
+  "keywords": [
+    "view",
+    "counter",
+    "active"
+  ],
+  "author": "Max Goodhart <c@chromakode.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wokenet/tinycount/issues"
+  },
+  "homepage": "https://github.com/wokenet/tinycount#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
